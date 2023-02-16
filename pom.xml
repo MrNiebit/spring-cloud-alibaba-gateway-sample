@@ -3,17 +3,24 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <artifactId>gateway-parent</artifactId>
-        <groupId>cn.lacknb</groupId>
-        <version>0.0.1-SNAPSHOT</version>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.2.6.RELEASE</version>
     </parent>
-    <artifactId>biz-service-9002</artifactId>
+    <artifactId>gateway-parent</artifactId>
     <groupId>cn.lacknb</groupId>
-    <packaging>jar</packaging>
     <version>0.0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
 
 
-    <name>biz-service-9002</name>
+    <modules>
+        <module>service-9001</module>
+        <module>biz-service-9002</module>
+        <module>gateway-service</module>
+    </modules>
+
+
+    <name>gateway-parent</name>
     <url>http://maven.apache.org</url>
 
     <properties>
@@ -22,20 +29,25 @@
 
     </properties>
 
-    <dependencies>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>com.alibaba.cloud</groupId>
-            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
-        </dependency>
-
-    </dependencies>
-
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+                <version>${spring-cloud-alibaba.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <!-- spring cloud 依赖 -->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>Hoxton.SR3</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <build>
         <plugins>

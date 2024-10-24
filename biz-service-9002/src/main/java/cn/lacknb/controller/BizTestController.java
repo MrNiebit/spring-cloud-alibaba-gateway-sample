@@ -1,5 +1,6 @@
 package cn.lacknb.controller;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,9 +17,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/test")
 public class BizTestController {
 
+    @Value("${server.port}")
+    private Integer port;
+
     @RequestMapping("/access")
     public String access() {
-        return "hello biz-service spring boot => port=9002";
+        return "hello biz-service spring boot => port=" + port;
     }
 
 }
